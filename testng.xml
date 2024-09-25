@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AutomationTestSuite" parallel="false">
+    <test name="UserLoginLogoutFlow">
+        <classes>
+            <!-- Specify your test classes here -->
+            <class name="com.getplus.automation.tests.Test.LoginTest"/>
+            <class name="com.getplus.automation.tests.Test.LogoutTest"/>
+        </classes>
+    </test>
+</suite>
