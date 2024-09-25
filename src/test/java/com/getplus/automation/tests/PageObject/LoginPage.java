@@ -3,30 +3,27 @@ package com.getplus.automation.tests.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.getplus.automation.tests.Utils.ConfigReader;
 
 public class LoginPage {
 	private WebDriver driver;
-	private ConfigReader configReader;
+	
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+	}
 	
 	//locator
 	private By usernameField = By.xpath("//input[@placeholder='Email']");
 	private By passwordField = By.xpath("//input[@placeholder='Password']");
 	private By loginClick = By.xpath("//span[text()='Login']");
 	
-	public LoginPage(WebDriver driver) {
-		this.driver = driver;
-		this.configReader = new ConfigReader();
-	}
-	
 	public void enterUsername(String username) {
         WebElement usernameElem = driver.findElement(usernameField);
-        usernameElem.sendKeys(configReader.getUsername());
+        usernameElem.sendKeys(username);
     }
 
     public void enterPassword(String password) {
         WebElement passwordElem = driver.findElement(passwordField);
-        passwordElem.sendKeys(configReader.getPassword());
+        passwordElem.sendKeys(password);
     }
 
     public void clickLogin() {

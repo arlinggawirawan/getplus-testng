@@ -4,15 +4,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.getplus.automation.tests.Base.BaseTest;
 import com.getplus.automation.tests.PageObject.LoginPage;
+import com.getplus.automation.tests.Utils.ConfigReader;
 
 public class LoginTest extends BaseTest {
 
     @Test
     public void testValidLogin() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
+        
+        ConfigReader config = new ConfigReader();
+        String username = config.getUsername();
+        String password = config.getPassword();
 
-        loginPage.enterUsername("arlingga.wirawan@gpi.id");
-        loginPage.enterPassword("arlingga-123");
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
         loginPage.clickLogin();
 
         Thread.sleep(3000); // Consider using WebDriverWait instead
