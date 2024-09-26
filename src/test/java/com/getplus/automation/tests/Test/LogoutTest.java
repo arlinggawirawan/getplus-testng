@@ -4,6 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.getplus.automation.tests.Base.BaseTest;
 import com.getplus.automation.tests.PageObject.LogoutPage;
+
+import java.time.Duration;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 	
 public class LogoutTest extends BaseTest {
 	
@@ -14,7 +19,8 @@ public class LogoutTest extends BaseTest {
 	    logoutPage.clickLogoutOption();
 	    logoutPage.clickLogout();
 	        
-	    Thread.sleep(3000);
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://portal-dev.getplus-app.net/login"));
 	        
 	    String expectedUrl = "https://portal-dev.getplus-app.net/login";
 	    Assert.assertEquals(driver.getCurrentUrl(), expectedUrl, "Logout failed, URL mismatch");
