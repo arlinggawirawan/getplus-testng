@@ -1,7 +1,7 @@
 package com.getplus.automation.tests.Test;
 	
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 import com.getplus.automation.tests.Base.BaseTest;
 import com.getplus.automation.tests.PageObject.LogoutPage;
 
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LogoutTest extends BaseTest {
 	
 	@Test
-	public void testValidLogout() throws InterruptedException {
+	public void testValidLogout() {
 		LogoutPage logoutPage = new LogoutPage(driver);
 	
 	    logoutPage.clickLogoutOption();

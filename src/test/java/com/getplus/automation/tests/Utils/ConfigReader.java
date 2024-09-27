@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigReader {
-    private Properties properties;
+    private final Properties properties;
 
     public ConfigReader() {
         try {
@@ -19,10 +19,12 @@ public class ConfigReader {
     }
 
     public String getUsername() {
+
         return properties.getProperty("username");
     }
 
     public String getPassword() {
+
         return properties.getProperty("password");
     }
 }

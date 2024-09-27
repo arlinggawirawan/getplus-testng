@@ -41,8 +41,10 @@ target/
 .project
 .settings/
 
-# Ignore vscode project files
+# Ignore IDE project files
 .vscode/
+.idea/
+.settings/
 
 # Ignore logs
 *.log

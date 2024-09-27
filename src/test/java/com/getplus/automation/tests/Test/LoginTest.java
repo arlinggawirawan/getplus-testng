@@ -1,7 +1,8 @@
 package com.getplus.automation.tests.Test;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+
 import com.getplus.automation.tests.Base.BaseTest;
 import com.getplus.automation.tests.PageObject.LoginPage;
 import com.getplus.automation.tests.Utils.ConfigReader;

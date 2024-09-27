@@ -5,16 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage {
-	private WebDriver driver;
+	private final WebDriver driver;
 	
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 	}
 	
 	//locator
-	private By usernameField = By.xpath("//input[@placeholder='Email']");
-	private By passwordField = By.xpath("//input[@placeholder='Password']");
-	private By loginClick = By.xpath("//span[text()='Login']");
+	private final By usernameField = By.xpath("//input[@placeholder='Email']");
+	private final By passwordField = By.xpath("//input[@placeholder='Password']");
+	private final By loginClick = By.xpath("//span[text()='Login']");
 	
 	public void enterUsername(String username) {
         WebElement usernameElem = driver.findElement(usernameField);
