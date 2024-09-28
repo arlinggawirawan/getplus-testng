@@ -18,13 +18,27 @@ public class ConfigReader {
         }
     }
 
-    public String getUsername() {
+    public String getChromeDriverPath() {
+        return properties.getProperty("chrome.driver.path");
+    }
 
+    public String getAppUrl() {
+        return properties.getProperty("app.url");
+    }
+
+    public boolean isHeadless() {
+        return Boolean.parseBoolean(properties.getProperty("headless"));
+    }
+
+    public String getWindowSize() {
+        return properties.getProperty("window.size");
+    }
+
+    public String getUsername() {
         return properties.getProperty("username");
     }
 
     public String getPassword() {
-
         return properties.getProperty("password");
     }
 }
