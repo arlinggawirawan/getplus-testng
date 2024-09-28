@@ -23,7 +23,7 @@ public class LogoutTest extends BaseTest {
         wait.until(ExpectedConditions.urlToBe("https://portal-dev.getplus-app.net/login"));
 	        
 	    String expectedUrl = "https://portal-dev.getplus-app.net/login";
-	    Assert.assertEquals(driver.getCurrentUrl(), expectedUrl, "Logout failed, URL mismatch");
-	    System.out.println("URL matched");    
+		System.out.println(expectedUrl);
+		Assert.assertEquals(driver.getCurrentUrl(), expectedUrl, "Logout failed, URL mismatch");
 	}	
 }

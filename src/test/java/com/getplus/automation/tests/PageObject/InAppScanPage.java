@@ -11,30 +11,46 @@ import java.time.Duration;
 
 public class InAppScanPage {
 
-    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     //locator
     private final By inAppScan = By.xpath("//div[text()='Foto Struk dashboard']");
     private final By inAppScanDefaultHeader = By.xpath("//h4[contains(text(), 'Pending Receipt')]");
-    
+    private final By inAppScanFilterAdmin = By.xpath("//input[@value='All Admin']");
+    private final By inAppScanSelectAdmin = By.xpath("//div[text()='arlingga.wirawan@gpi.id (Admin)']");
+    private final By inAppScanAssertSelectionAdmin = By.className("mantine-Input-input");
 
     public InAppScanPage(WebDriver driver) {
-        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void clickInAppScan() {   	
- 
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement clickInAppScanPage = wait.until(ExpectedConditions.presenceOfElementLocated(inAppScan));
-        clickInAppScanPage.click();
-        
+    private WebElement waitForElement(By locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
-        
+
+    private WebElement waitForVisibility(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void clickInAppScan() {
+        WebElement clickInAppScanPage = waitForElement(inAppScan);
+        clickInAppScanPage.click();
+    }
+
    public void assertDefaultHeader() {
-    	
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    	WebElement assertDefaultHeaderInAppScan = wait.until(ExpectedConditions.visibilityOfElementLocated(inAppScanDefaultHeader));
+    	WebElement assertDefaultHeaderInAppScan = waitForElement(inAppScanDefaultHeader);
     	String headerText = assertDefaultHeaderInAppScan.getText();
     	Assert.assertEquals(headerText, "Pending Receipt", "Assertion failed, header missmatch");
     }
+
+   public void filterAdmin() {
+        WebElement clickFilterAdmin = waitForElement(inAppScanFilterAdmin);
+        clickFilterAdmin.click();
+        WebElement selectAdminName = waitForVisibility(inAppScanSelectAdmin);
+        selectAdminName.click();
+        WebElement assertSelectionAdmin = waitForVisibility(inAppScanAssertSelectionAdmin);
+        String adminText = assertSelectionAdmin.getAttribute("value").trim();  // Get 'value' instead of 'text' for input elements
+        System.out.println("Actual admin text: " + adminText);
+        Assert.assertEquals(adminText, "arlingga.wirawan@gpi.id (Admin)", "Assertion failed, admin not selected");
+   }
 }

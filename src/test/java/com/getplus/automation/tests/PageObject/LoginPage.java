@@ -8,9 +8,9 @@ public class LoginPage {
 	private final WebDriver driver;
 	
 	public LoginPage(WebDriver driver) {
-		this.driver = driver;
+        this.driver = driver;
 	}
-	
+
 	//locator
 	private final By usernameField = By.xpath("//input[@placeholder='Email']");
 	private final By passwordField = By.xpath("//input[@placeholder='Password']");
