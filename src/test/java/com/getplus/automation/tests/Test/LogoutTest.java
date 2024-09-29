@@ -1,15 +1,16 @@
 package com.getplus.automation.tests.Test;
-	
-import org.testng.annotations.Test;
-import org.testng.Assert;
+
 import com.getplus.automation.tests.Base.BaseTest;
 import com.getplus.automation.tests.PageObject.LogoutPage;
-
-import java.time.Duration;
-
+import com.getplus.automation.tests.Utils.CustomTestListener;
+import org.testng.annotations.Test;
+import org.testng.annotations.Listeners;
+import org.testng.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-	
+import java.time.Duration;
+
+@Listeners(CustomTestListener.class)
 public class LogoutTest extends BaseTest {
 	
 	@Test

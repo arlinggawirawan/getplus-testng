@@ -11,6 +11,7 @@ import java.time.Duration;
 public class BaseTest {
     
 	protected static WebDriver driver;
+    private static final Duration IMPLICIT_WAIT_DURATION = Duration.ofSeconds(30);
 
     @BeforeTest
     public void setup() {
@@ -19,14 +20,12 @@ public class BaseTest {
 
         ChromeOptions options = new ChromeOptions();
         if (configReader.isHeadless()) {
-            options.addArguments("--headless");
-            options.addArguments("--disable-gpu");
-            options.addArguments("--window-size=" + configReader.getWindowSize());
+            options.addArguments("--headless", "--disable-gpu", "--window-size=" + configReader.getWindowSize());
         }
         
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_DURATION);
         driver.get(configReader.getAppUrl());
     }
 

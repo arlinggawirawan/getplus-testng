@@ -1,5 +1,7 @@
 package com.getplus.automation.tests.PageObject;
 
+import com.getplus.automation.tests.Utils.ConfigReader;
+import com.getplus.automation.tests.Utils.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +14,7 @@ import java.time.Duration;
 public class InAppScanPage {
 
     private final WebDriverWait wait;
+    private final ConfigReader configReader;
 
     //locator
     private final By inAppScan = By.xpath("//div[text()='Foto Struk dashboard']");
@@ -19,9 +22,13 @@ public class InAppScanPage {
     private final By inAppScanFilterAdmin = By.xpath("//input[@value='All Admin']");
     private final By inAppScanSelectAdmin = By.xpath("//div[text()='arlingga.wirawan@gpi.id (Admin)']");
     private final By inAppScanAssertSelectionAdmin = By.className("mantine-Input-input");
+    private final By inAppScanInputFilterMerchant = By.xpath("//input[@placeholder='Merchant']");
+    private final By inAppScanInputFilterLocation = By.xpath("//input[@placeholder='Location']");
+    private final By inAppScanFilterSubmitButton = By.xpath("//span[text()='Submit']");
 
     public InAppScanPage(WebDriver driver) {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.configReader = new ConfigReader();
     }
 
     private WebElement waitForElement(By locator) {
@@ -52,5 +59,26 @@ public class InAppScanPage {
         String adminText = assertSelectionAdmin.getAttribute("value").trim();  // Get 'value' instead of 'text' for input elements
         System.out.println("Actual admin text: " + adminText);
         Assert.assertEquals(adminText, "arlingga.wirawan@gpi.id (Admin)", "Assertion failed, admin not selected");
+   }
+
+    public void applyRandomCaseFilter() {
+        String randomizedMerchantFilter = StringUtils.randomizeCase(configReader.getFilterMerchant());
+        String randomizedLocationFilter = StringUtils.randomizeCase(configReader.getFilterLocation());
+        filterReceiptMerchant(randomizedMerchantFilter);
+        filterReceiptLocation(randomizedLocationFilter);
+    }
+
+   public void filterReceiptMerchant(String filter) {
+       WebElement inputFilterMerchant = waitForElement(inAppScanInputFilterMerchant);
+       inputFilterMerchant.clear();
+       inputFilterMerchant.sendKeys(filter);
+    }
+
+   public void filterReceiptLocation(String filter) {
+       WebElement inputFilterLocation = waitForElement(inAppScanInputFilterLocation);
+       inputFilterLocation.clear();
+       inputFilterLocation.sendKeys(filter);
+       WebElement clickFilterSubmitButton = waitForElement(inAppScanFilterSubmitButton);
+       clickFilterSubmitButton.click();
    }
 }

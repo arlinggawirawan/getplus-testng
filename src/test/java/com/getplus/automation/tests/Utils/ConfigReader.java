@@ -18,6 +18,14 @@ public class ConfigReader {
         }
     }
 
+    public String getFilterMerchant() {
+        return properties.getProperty("filter.merchant");
+    }
+
+    public String getFilterLocation() {
+        return properties.getProperty("filter.location");
+    }
+
     public String getChromeDriverPath() {
         return properties.getProperty("chrome.driver.path");
     }
