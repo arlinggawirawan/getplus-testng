@@ -18,6 +18,10 @@ public class ConfigReader {
         }
     }
 
+    public String getFilterEmail() {
+        return properties.getProperty("filter.email.like");
+    }
+
     public String getFilterMerchant() {
         return properties.getProperty("filter.merchant");
     }

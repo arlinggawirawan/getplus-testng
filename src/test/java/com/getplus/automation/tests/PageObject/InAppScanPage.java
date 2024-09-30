@@ -24,6 +24,7 @@ public class InAppScanPage {
     private final By inAppScanAssertSelectionAdmin = By.className("mantine-Input-input");
     private final By inAppScanInputFilterMerchant = By.xpath("//input[@placeholder='Merchant']");
     private final By inAppScanInputFilterLocation = By.xpath("//input[@placeholder='Location']");
+    private final By inAppScanInputFilterEmail = By.xpath("//input[@placeholder='Email']");
     private final By inAppScanFilterSubmitButton = By.xpath("//span[text()='Submit']");
 
     public InAppScanPage(WebDriver driver) {
@@ -64,8 +65,10 @@ public class InAppScanPage {
     public void applyRandomCaseFilter() {
         String randomizedMerchantFilter = StringUtils.randomizeCase(configReader.getFilterMerchant());
         String randomizedLocationFilter = StringUtils.randomizeCase(configReader.getFilterLocation());
+        String randomizedEmailFilter = StringUtils.randomizeCase(configReader.getFilterEmail());
         filterReceiptMerchant(randomizedMerchantFilter);
         filterReceiptLocation(randomizedLocationFilter);
+        filterReceiptEmail(randomizedEmailFilter);
     }
 
    public void filterReceiptMerchant(String filter) {
@@ -78,7 +81,13 @@ public class InAppScanPage {
        WebElement inputFilterLocation = waitForElement(inAppScanInputFilterLocation);
        inputFilterLocation.clear();
        inputFilterLocation.sendKeys(filter);
-       WebElement clickFilterSubmitButton = waitForElement(inAppScanFilterSubmitButton);
-       clickFilterSubmitButton.click();
+   }
+
+   public void filterReceiptEmail(String filter) {
+        WebElement inputFilterEmail = waitForElement(inAppScanInputFilterEmail);
+        inputFilterEmail.clear();
+        inputFilterEmail.sendKeys(filter);
+        WebElement clickFilterSubmitButton = waitForElement(inAppScanFilterSubmitButton);
+        clickFilterSubmitButton.click();
    }
 }
